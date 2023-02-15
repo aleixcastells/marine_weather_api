@@ -1,9 +1,7 @@
 import { LOCATION_ARRAY, NOW } from '../main.js'
 
 export function flagColor(location_number) {
-
     let next_hour = 48 + NOW
-
     let rain_clear = false
     let clouds_clear = false
     let warning_clear = false
@@ -14,75 +12,33 @@ export function flagColor(location_number) {
     let wind_low = false
     let wind_high = false
 
-    if (LOCATION_ARRAY[location_number].precipitation[next_hour] == 0
-        && LOCATION_ARRAY[location_number].precipitation[next_hour + 1] == 0
-        && LOCATION_ARRAY[location_number].precipitation[next_hour + 2] == 0
-        && LOCATION_ARRAY[location_number].precipitation[next_hour + 3] == 0
-        && LOCATION_ARRAY[location_number].precipitation[next_hour + 4] == 0
-        && LOCATION_ARRAY[location_number].precipitation[next_hour - 1] == 0
-        && LOCATION_ARRAY[location_number].precipitation[next_hour - 2] == 0
-    ) { rain_clear = true }
-
-    if (LOCATION_ARRAY[location_number].wind_speed[next_hour] < 15
-        && LOCATION_ARRAY[location_number].wind_speed[next_hour + 1] < 15
-        && LOCATION_ARRAY[location_number].wind_speed[next_hour + 2] < 15
-    ) { wind_low = true }
-
-    if (LOCATION_ARRAY[location_number].wind_speed[next_hour] > 30
-        && LOCATION_ARRAY[location_number].wind_speed[next_hour + 1] > 30
-        && LOCATION_ARRAY[location_number].wind_speed[next_hour + 2] > 30
-    ) { wind_high = true }
-
-    if (LOCATION_ARRAY[location_number].cloud_cover[next_hour] < 10
-        && LOCATION_ARRAY[location_number].cloud_cover[next_hour + 1] < 10
-        && LOCATION_ARRAY[location_number].cloud_cover[next_hour + 2] < 10
-    ) { clouds_clear = true }
-
-    if (LOCATION_ARRAY[location_number].weathercode[next_hour] < 2
-        && LOCATION_ARRAY[location_number].weathercode[next_hour + 1] < 2
-        && LOCATION_ARRAY[location_number].weathercode[next_hour + 2] < 2
-        && LOCATION_ARRAY[location_number].weathercode[next_hour - 1] < 2
-    ) { warning_clear = true }
-
-    if (LOCATION_ARRAY[location_number].weathercode[next_hour] >= 2
-        && LOCATION_ARRAY[location_number].weathercode[next_hour + 1] >= 2
-        && LOCATION_ARRAY[location_number].weathercode[next_hour + 2] >= 2
-        && LOCATION_ARRAY[location_number].weathercode[next_hour - 1] >= 2
-    ) { warning_intense = true }
-
+    // weather, max, min, before, after, location 
+    if (checkWeather('precipitation', 0, 0, -5, 4, location_number)) { rain_clear = true }
+    if (checkWeather('wind_speed', 15, 0, 0, 2, location_number)) { wind_low = true }
+    if (checkWeather('wind_speed', 1000, 35, 0, 4, location_number)) { wind_high = true }
+    if (checkWeather('cloud_cover', 10, 0, 0, 2, location_number)) { clouds_clear = true }
+    if (checkWeather('weathercode', 3, 0, -1, 2, location_number)) { warning_clear = true }
+    if (checkWeather('weathercode', 100, 3, -1, 2, location_number)) { warning_intense = true }
+    if (checkWeather('wave_height', .5, 0, -2, 3, location_number)) { no_waves = true }
+    if (checkWeather('wave_height', 50, 1.5, -4, 3, location_number)) { large_waves = true }
     if (LOCATION_ARRAY[location_number].uvi <= 8) { uvi_low = true }
-
-    if (LOCATION_ARRAY[location_number].wave_height[next_hour] < .5
-        && LOCATION_ARRAY[location_number].wave_height[next_hour + 1] < .5
-        && LOCATION_ARRAY[location_number].wave_height[next_hour + 2] < .5
-        && LOCATION_ARRAY[location_number].wave_height[next_hour - 1] < .5
-    ) { no_waves = true }
-
-    if (LOCATION_ARRAY[location_number].wave_height[next_hour] > 1.5
-        && LOCATION_ARRAY[location_number].wave_height[next_hour + 1] > 1.5
-        && LOCATION_ARRAY[location_number].wave_height[next_hour + 2] > 1.5
-        && LOCATION_ARRAY[location_number].wave_height[next_hour + 2] > 1.5
-        && LOCATION_ARRAY[location_number].wave_height[next_hour + 3] > 1.5
-        && LOCATION_ARRAY[location_number].wave_height[next_hour - 1] > 1.5
-        && LOCATION_ARRAY[location_number].wave_height[next_hour - 2] > 1.5
-        && LOCATION_ARRAY[location_number].wave_height[next_hour - 3] > 1.5
-        && LOCATION_ARRAY[location_number].wave_height[next_hour - 4] > 1.5
-    ) { large_waves = true }
-
-    // console.log('--------------------------------------')
-    // console.log(LOCATION_ARRAY[location_number].name)
-    // console.log(' ')
-    // console.log('rain_clear: ', rain_clear)
-    // console.log('wind_low: ', wind_low)
-    // console.log('wind_high: ', wind_high)
-    // console.log('clouds_clear: ', clouds_clear)
-    // console.log('warning_clear: ', warning_clear)
-    // console.log('warning_intense: ', warning_intense)
-    // console.log('uvi_low: ', uvi_low)
-    // console.log('no_waves: ', no_waves)
-    // console.log('large_waves: ', large_waves)
 
     if (!rain_clear || warning_intense || large_waves || wind_high) { return 'flag-red' }
     if (!uvi_low || !no_waves || !wind_low || !warning_clear || !clouds_clear) { return 'flag-yellow' }
     if (uvi_low && no_waves && wind_low && clouds_clear && rain_clear && warning_clear) { return 'flag-green' }
 }
+
+function checkWeather(weather, max = 1000, min = 0, before = 0, after = 2, location_number) {
+    let isGood = true
+    let check_array = []
+
+    for (let c = 0; before <= after; before++) { check_array.push(before) }
+
+    for (let k = 0; k < check_array.length; k++) {
+        let weather_check = LOCATION_ARRAY[location_number][weather][48 + NOW + check_array[k]]
+        if (weather_check > max || weather_check < min) { isGood = false }
+        if (weather_check < max && weather_check > min) { isGood = true }
+    }
+    return isGood
+}
+

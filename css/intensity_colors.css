@@ -1,0 +1,337 @@
+/*----------- WAVE PERIOD INTENSITY ------------*/
+
+.period_int_1 {
+    background-color: #c13333;
+}
+
+.period_int_2 {
+    background-color: #cc4040;
+}
+
+.period_int_3 {
+    background-color: #cc623e;
+}
+
+.period_int_4 {
+    background-color: #cc8a3b;
+}
+
+.period_int_5 {
+    background-color: #ddb03e;
+}
+
+.period_int_6 {
+    background-color: #e0c53d;
+}
+
+.period_int_7 {
+    background-color: #e5d039;
+}
+
+.period_int_8 {
+    background-color: #d6d641;
+}
+
+.period_int_9 {
+    background-color: #c1d888;
+}
+
+.period_int_10 {
+    background-color: #88d893;
+}
+
+.period_int_12 {
+    background-color: #8ad6b4;
+}
+
+.period_int_14 {
+    background-color: #88d8cc;
+}
+
+.period_int_16 {
+    background-color: #8ad1d6;
+}
+
+.period_int_18_plus {
+    background-color: #89cadb;
+}
+
+
+/*----------- WAVE HEIGHT INTENSITY ------------*/
+
+.wave_int_0_3 {
+    background-color: #9bd2e6;
+}
+
+.wave_int_0_5 {
+    background-color: #95d5e5;
+}
+
+.wave_int_1 {
+    background-color: #6dafbd;
+}
+
+.wave_int_1_5 {
+    background-color: #3f8490;
+}
+
+.wave_int_2 {
+    background-color: #31bd98;
+}
+
+.wave_int_2_5 {
+    background-color: #24c359;
+}
+
+.wave_int_3 {
+    background-color: #cbce3a;
+}
+
+.wave_int_3_5 {
+    background-color: #cea93a;
+}
+
+.wave_int_4 {
+    background-color: #cc8a3b;
+}
+
+.wave_int_5 {
+    background-color: #cc623e;
+}
+
+.wave_int_6 {
+    background-color: #cc4040;
+}
+
+.wave_int_7 {
+    background-color: #cc428a;
+}
+
+.wave_int_8 {
+    background-color: #b844cc;
+}
+
+.wave_int_9 {
+    background-color: #676767;
+}
+
+.wave_int_10 {
+    background-color: #b3b3b3;
+}
+
+.wave_int_10_plus {
+    background-color: #ebebeb;
+}
+
+
+/*----------- CLOUD COVER INTENSITY ------------*/
+
+.cloud_int_0_3 {
+    background-color: #96d4ea;
+    /* 1 */
+}
+
+.cloud_int_0_5 {
+    background-color: #96d4ea;
+}
+
+.cloud_int_1 {
+    background-color: #abc4c6;
+}
+
+.cloud_int_1_5 {
+    background-color: #abc4c6;
+}
+
+.cloud_int_2 {
+    background-color: #abc4c6;
+}
+
+.cloud_int_2_5 {
+    background-color: #acaeaf;
+}
+
+.cloud_int_3 {
+    background-color: #acaeaf;
+}
+
+.cloud_int_3_5 {
+    background-color: #909596;
+    color: white !important;
+}
+
+.cloud_int_4 {
+    background-color: #777e7f;
+    color: white !important;
+}
+
+.cloud_int_5 {
+    background-color: #626b6d;
+    color: white !important;
+}
+
+.cloud_int_6 {
+    background-color: #5c6466;
+    color: white !important;
+}
+
+.cloud_int_7 {
+    background-color: #4e5556;
+    color: white !important;
+}
+
+.cloud_int_8 {
+    background-color: #454b4c;
+    color: white !important;
+}
+
+.cloud_int_9 {
+    background-color: #3b4142;
+    color: white !important;
+}
+
+.cloud_int_10 {
+    background-color: #333a3a;
+    color: white !important;
+}
+
+.cloud_int_10_plus {
+    background-color: #2d3435;
+    color: white !important;
+}
+
+
+/*----------- DISBLED CELL ------------*/
+
+.disabled_cell {
+    background-color: #1e1e1e;
+    color: white;
+
+}
+
+
+/*----------- UV INDEX INTENSITY ------------*/
+
+.uv_index_1 {
+    background-color: #e0c53d;
+}
+
+.uv_index_2 {
+    background-color: #ddb03e;
+}
+
+.uv_index_3 {
+    background-color: #cc8a3b;
+}
+
+.uv_index_4 {
+    background-color: #cc623e;
+}
+
+.uv_index_5 {
+    background-color: #cc4040;
+}
+
+.uv_index_6 {
+    background-color: #cc428a;
+}
+
+.uv_index_7 {
+    background-color: #b844cc;
+}
+
+.uv_index_8 {
+    background-color: #9746cc;
+}
+
+.uv_index_9 {
+    background-color: #7b48cc;
+}
+
+.uv_index_10 {
+    background-color: #664acc;
+}
+
+.uv_index_11 {
+    background-color: #4c4ccc;
+}
+
+.uv_index_12 {
+    background-color: #4d42b7;
+}
+
+.uv_index_13 {
+    background-color: #3937a0;
+}
+
+.uv_index_14 {
+    background-color: #323087;
+}
+
+.uv_index_14_plus {
+    background-color: #323087;
+}
+
+
+
+/*----------- TEMPERATURE INTENSITY ------------*/
+
+.temp_int_0 {
+    background-color: #89cadb;
+}
+
+.temp_int_5 {
+    background-color: #8ad1d6;
+}
+
+.temp_int_7 {
+    background-color: #88d8cc;
+}
+
+.temp_int_10 {
+    background-color: #8ad6b4;
+}
+
+.temp_int_12 {
+    background-color: #88d893;
+}
+
+.temp_int_15 {
+    background-color: #c1d888;
+}
+
+.temp_int_17 {
+    background-color: #d6d641;
+}
+
+.temp_int_20 {
+    background-color: #e5d039;
+}
+
+.temp_int_22 {
+    background-color: #e0c53d;
+}
+
+.temp_int_25 {
+    background-color: #ddb03e;
+}
+
+.temp_int_27 {
+    background-color: #cc8a3b;
+}
+
+.temp_int_30 {
+    background-color: #cc623e;
+}
+
+.temp_int_32 {
+    background-color: #cc4040;
+}
+
+.temp_int_35 {
+    background-color: #c13333;
+}
+
+.temp_int_35_plus {
+    background-color: #bf3479;
+}

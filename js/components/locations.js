@@ -2,6 +2,7 @@ export const LOCATIONS = [
     ['Cala Estreta', 'Artà', '39.75', '3.41'],
     ['Son Serra', 'Santa Margalida', '39.73', '3.23'],
     ['Es Caló', 'Artà', '39.77', '3.33'],
+    ['Baconé', 'L\'Ampolla', '40.8153', '0.7220'],
     ['C. Alberdans', 'Canyamel', '39.64', '3.43'],
     ['Na Clara', 'Artà', '39.75', '3.32'],
     ['S\'Estanyol', 'Artà', '39.73', '3.25'],
@@ -24,4 +25,10 @@ export const LOCATIONS = [
 /*
 
 
-39.415557887017684, -0.3128713327733732*/
+40.81531054992943, 0.7220674390367953
+
+
+
+
+
+*/
