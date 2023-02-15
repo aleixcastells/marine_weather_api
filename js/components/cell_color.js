@@ -1,4 +1,3 @@
-
 export function cellColor(intensity_value, graph_type) {
 
     const INTENSITY_COLOR = [
@@ -18,37 +17,16 @@ export function cellColor(intensity_value, graph_type) {
     ]
 
     switch (graph_type) {
-
-        case 'waves': graph_type = 0
-            break
-
-        case 'period': graph_type = 1
-            break
-
-        case 'disable': graph_type = 2
-            break
-
-        case 'cloudcover': graph_type = 3
-            break
-
-        case 'temperature': graph_type = 4
-            break
+        case 'waves': graph_type = 0; break
+        case 'period': graph_type = 1; break
+        case 'disable': graph_type = 2; break
+        case 'cloudcover': graph_type = 3; break
+        case 'temperature': graph_type = 4; break
     }
 
-    if (intensity_value < INTENSITY[graph_type][0]) { return INTENSITY_COLOR[graph_type][0] }
-    if (intensity_value < INTENSITY[graph_type][1]) { return INTENSITY_COLOR[graph_type][1] }
-    if (intensity_value < INTENSITY[graph_type][2]) { return INTENSITY_COLOR[graph_type][2] }
-    if (intensity_value < INTENSITY[graph_type][3]) { return INTENSITY_COLOR[graph_type][3] }
-    if (intensity_value < INTENSITY[graph_type][4]) { return INTENSITY_COLOR[graph_type][4] }
-    if (intensity_value < INTENSITY[graph_type][5]) { return INTENSITY_COLOR[graph_type][5] }
-    if (intensity_value < INTENSITY[graph_type][6]) { return INTENSITY_COLOR[graph_type][6] }
-    if (intensity_value < INTENSITY[graph_type][7]) { return INTENSITY_COLOR[graph_type][7] }
-    if (intensity_value < INTENSITY[graph_type][8]) { return INTENSITY_COLOR[graph_type][8] }
-    if (intensity_value < INTENSITY[graph_type][9]) { return INTENSITY_COLOR[graph_type][9] }
-    if (intensity_value < INTENSITY[graph_type][10]) { return INTENSITY_COLOR[graph_type][10] }
-    if (intensity_value < INTENSITY[graph_type][11]) { return INTENSITY_COLOR[graph_type][11] }
-    if (intensity_value < INTENSITY[graph_type][12]) { return INTENSITY_COLOR[graph_type][12] }
-    if (intensity_value <= INTENSITY[graph_type][13]) { return INTENSITY_COLOR[graph_type][13] }
-    if (intensity_value > INTENSITY[graph_type][14]) { return INTENSITY_COLOR[graph_type][14] }
+    for (let i = 0; i < 14; i++) {
+        if (intensity_value < INTENSITY[graph_type][i]) { return INTENSITY_COLOR[graph_type][i] }
+    }
+    if (intensity_value >= INTENSITY[graph_type][13]) { return INTENSITY_COLOR[graph_type][14] }
 }
 

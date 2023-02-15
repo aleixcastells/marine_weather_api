@@ -26,8 +26,53 @@ console.log(LOCATION_ARRAY)
 
 apiFetch()
 
+
+
+function urlSequence(i) {
+
+
+    let result = 0
+
+    let rows = Math.floor(LOCATION_AMOUNT / 3)
+    let current_row = Math.floor(i / 3)
+    let cols = 3
+
+    // if ((i / cols) * 3)
+
+    console.log(current_row * 3 + (i))
+    console.log('floor', Math.floor(i / 3))
+
+
+
+
+
+    //  0.1.2 3.4.5 6.7.8 9.10.11 12.13.14
+
+    // 0
+    // 3
+    // 6
+    // 9
+    // 12
+
+    // 1
+    // 4
+    // 7
+    // 10
+    // 13
+
+    // 2
+    // 5
+    // 8
+    // 11
+    // 14
+
+}
+
+
 async function apiFetch() {
     for (let i = 0; i < LOCATION_AMOUNT; i++) {
+
+        urlSequence(i)
 
         let api_land_url =
             API_URL[0][0] +
@@ -42,6 +87,8 @@ async function apiFetch() {
             API_URL[1][1] +
             LOCATIONS[i][3] +
             API_URL[1][2]
+
+
 
         const RESPONSE_LAND = await fetch(api_land_url)
         const RESPONSE_MARINE = await fetch(api_marine_url)
@@ -82,10 +129,26 @@ function addTables() {
 
     let table_containters_array = ['table_container_1', 'table_container_2', 'table_container_3']
     let header_classes_array = ['header_flag', 'header_location', 'header_wind', 'header_temperature', 'header_town']
-    let table_titles = ['WAVE HEIGHT (m)', 'WAVE PERIOD (s)', 'WAVE DIRECTION', 'CLOUD COVER (%)', 'TEMPERATURE (°C)']
+    let table_titles = ['WAVE HEIGHT (m)', 'WAVE PERIOD (s)', 'WAVE DIRECTION', 'CLOUD COVER (%)', 'AIR TEMPERATURE (°C)']
     let table_colors = ['waves', 'period', 'disable', 'cloudcover', 'temperature']
     let table_select = 0
     let main_container;
+
+    let expand_button = document.getElementById('expand_button')
+    expand_button.addEventListener('click', () => {
+
+        let expand_array = ['expand all', 'close all']
+
+        if (expand_button.textContent == expand_array[0]) {
+            expand_button.textContent = expand_array[1]
+            closeTables(false)
+        }
+
+        else {
+            expand_button.textContent = expand_array[0]
+            closeTables(true)
+        }
+    })
 
     for (let i = 0; i < LOCATION_AMOUNT; i++) {
 
@@ -118,11 +181,13 @@ function addTables() {
             if (document.getElementById(event.currentTarget.id).classList.contains('table_div_open')) {
                 document.getElementById(event.currentTarget.id).classList.replace('table_div_open', 'table_div_collapsed')
                 document.getElementById('inner_div_' + event.currentTarget.id.match(/\d{1,}$/g)).classList.replace('visible', 'hidden')
+                document.getElementById('inner_div_wrap_' + event.currentTarget.id.match(/\d{1,}$/g)).classList.replace('inner_open', 'inner_closed')
             }
 
             else {
                 document.getElementById(event.currentTarget.id).classList.replace('table_div_collapsed', 'table_div_open')
                 document.getElementById('inner_div_' + event.currentTarget.id.match(/\d{1,}$/g)).classList.replace('hidden', 'visible')
+                document.getElementById('inner_div_wrap_' + event.currentTarget.id.match(/\d{1,}$/g)).classList.replace('inner_closed', 'inner_open')
             }
         })
 
@@ -144,8 +209,14 @@ function addTables() {
             if (h == 3) { new_th.textContent = `${(LOCATION_ARRAY[i].temperature[48 + NOW]).toFixed(0)} ºC` }
         }
 
+        let table_inner_div_wrap = document.createElement('div')
+        table_inner_div_wrap.setAttribute('class', 'inner_div_wrap inner_open')
+        table_inner_div_wrap.setAttribute('id', `inner_div_wrap_${(i + 1)}`)
         let table_inner_div = document.createElement('div')
-        new_div.append(table_inner_div)
+        new_div.append(table_inner_div_wrap)
+
+
+        table_inner_div_wrap.append(table_inner_div)
         table_inner_div.setAttribute('class', 'inner_div visible')
         table_inner_div.setAttribute('id', `inner_div_${(i + 1)}`)
         table_inner_div.append(new_div_hour_axis)
@@ -158,9 +229,9 @@ function addTables() {
             new_div_hour_axis_cells.innerHTML = (`${g + 1}<br>|`)
 
             if (g == NOW - 1 || g == NOW - 13) {
-                new_div_hour_axis_cells.setAttribute('class', 'new_div_hour_axis_cells cell_highlight')
+                new_div_hour_axis_cells.setAttribute('class', 'new_div_hour_axis_cells axis_highlight')
             }
-            if (g != NOW - 1) {
+            else {
                 new_div_hour_axis_cells.setAttribute('class', 'new_div_hour_axis_cells')
             }
         }
@@ -188,7 +259,9 @@ function addTables() {
                     if (y != 2) { new_div_colortable_cell.setAttribute('class', `colortable_cell ${cellColor(new_div_colortable_cell.textContent, table_colors[y])}`) }
                     if (y == 2) { new_div_colortable_cell.setAttribute('class', `colortable_cell wind_cell`) }
                     if (y == 2) { new_div_colortable_cell.textContent = windCardinalDirection(new_div_colortable_cell.textContent) }
-                    if (k + (12 * j) == NOW - 1) { new_div_colortable_cell.classList.add('cell_highlight') }
+                    if (k + (12 * j) == NOW - 1) {
+                        new_div_colortable_cell.classList.add('cell_highlight')
+                    }
                 }
             }
         }
@@ -211,11 +284,11 @@ function addTables() {
 
 function selectData(i, table_row_number, k, j) {
     switch (table_row_number) {
-        case 0: return (LOCATION_ARRAY[i].wave_height[(k + (12 * j)) + 48]).toFixed(1)
-        case 1: return (LOCATION_ARRAY[i].wave_period[(k + (12 * j)) + 48]).toFixed(0)
-        case 2: return (LOCATION_ARRAY[i].wave_direction[(k + (12 * j)) + 48]).toFixed(0)
-        case 3: return (LOCATION_ARRAY[i].cloud_cover[(k + (12 * j)) + 48]).toFixed(0)
-        case 4: return (LOCATION_ARRAY[i].temperature[(k + (12 * j)) + 48]).toFixed(1)
+        case 0: return (LOCATION_ARRAY[i].wave_height[(k + (12 * j)) + 49]).toFixed(1)
+        case 1: return (LOCATION_ARRAY[i].wave_period[(k + (12 * j)) + 49]).toFixed(0)
+        case 2: return (LOCATION_ARRAY[i].wave_direction[(k + (12 * j)) + 49]).toFixed(0)
+        case 3: return (LOCATION_ARRAY[i].cloud_cover[(k + (12 * j)) + 49]).toFixed(0)
+        case 4: return (LOCATION_ARRAY[i].temperature[(k + (12 * j)) + 49]).toFixed(1)
     }
 }
 
@@ -225,6 +298,19 @@ function closeTables(toggle) {
         for (let j = 1; j <= LOCATION_ARRAY.length; j++) {
             document.getElementById('table_div_' + j).classList.replace('table_div_open', 'table_div_collapsed')
             document.getElementById('inner_div_' + j).classList.replace('visible', 'hidden')
+            document.getElementById('inner_div_wrap_' + j).classList.replace('inner_open', 'inner_closed')
         }
     }
+
+    if (toggle == false) {
+        for (let j = 1; j <= LOCATION_ARRAY.length; j++) {
+            document.getElementById('table_div_' + j).classList.replace('table_div_collapsed', 'table_div_open')
+            document.getElementById('inner_div_' + j).classList.replace('hidden', 'visible')
+            document.getElementById('inner_div_wrap_' + j).classList.replace('inner_closed', 'inner_open')
+        }
+    }
+
 }
+
+
+

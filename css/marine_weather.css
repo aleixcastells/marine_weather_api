@@ -7,6 +7,7 @@ body {
 .main_table_container {
     padding-top: 70px;
     min-height: 88vh;
+    min-height: 100vh;
 }
 
 .header_fixed {
@@ -57,6 +58,12 @@ table {
     display: block;
     margin-top: 10px;
     border-radius: 23px;
+
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+
 }
 
 .div_colortable_title {
@@ -72,13 +79,73 @@ table {
     /* background-color: #181818; */
     background-color: #e5e5e5;
     padding: .5em;
+
+    height: 450px;
+    opacity: 1;
 }
 
+.inner_div_wrap {
+
+    height: 450px;
+}
+
+.inner_open {
+    display: block;
+}
+
+.inner_closed {
+    display: none;
+}
+
+.visible {
+    opacity: 1;
+
+}
+
+.hidden {
+    opacity: 0;
+}
+
+
 .cell_highlight {
-    font-weight: bold !important;
-    color: black;
-    border-left: 1px solid #e5e5e5;
-    border-right: 1px solid #e5e5e5;
+    font-weight: bolder !important;
+    animation: blink_animation 2s infinite;
+    -webkit-animation: blink_animation 2s infinite;
+}
+
+@keyframes blink_animation {
+
+    0%,
+    49% {
+        background-color: transparent;
+    }
+
+    50%,
+    100% {
+        color: inherit;
+    }
+}
+
+@-webkit-keyframes blink_animation {
+    to {
+        background-color: transparent;
+        color: black;
+    }
+}
+
+.axis_highlight {
+    font-weight: bolder !important;
+    color: black !important;
+}
+
+.expand_button {
+    position: fixed;
+    left: 1.2em;
+    top: 1em;
+    width: 9em;
+    height: 2em;
+    font-size: .7em;
+    line-height: 0;
 }
 
 .wind_cell {
@@ -111,8 +178,6 @@ table {
     height: 75px;
 }
 
-
-
 th {
     background-color: transparent !important;
 }
@@ -128,7 +193,6 @@ th {
 .header_location {
     background-color: transparent !important;
     line-height: 1.15em;
-
 }
 
 .header_town {
@@ -139,10 +203,10 @@ th {
 
 .header_wind {
     background-color: transparent !important;
-    font-weight: 300;
-    font-size: .7em;
-    line-height: 3.4em;
+    font-weight: normal;
+    font-size: .8em;
     text-align: right;
+    padding-bottom: 1.15em !important;
 }
 
 .header_temperature {
@@ -151,6 +215,7 @@ th {
     text-align: right;
     line-height: 1.3em;
     padding-right: 1.2em !important;
+    width: 120px;
 }
 
 .flag-green {
@@ -175,13 +240,11 @@ th {
 
 }
 
-
-
 .colortable_row {
     width: 100%;
     display: block;
     height: 17px;
-    margin-top: -.5px;
+    margin-top: 0px;
     margin-bottom: 2px;
     float: left;
 
@@ -191,21 +254,12 @@ th {
     width: 8.333%;
     height: 16.5px;
     display: inline-block;
-    font-size: .8em;
-    padding-top: 1px;
+    font-size: .72em;
+    padding-top: 2px;
 
 }
 
 
-
-.visible {
-    display: block;
-}
-
-.hidden {
-    display: none;
-
-}
 
 .new_div_uvi {
     margin-top: .8em;
@@ -222,7 +276,6 @@ th {
     margin-top: .27em;
     margin-left: 1em;
     color: white;
-
 }
 
 .new_div_uvi_text {
@@ -231,10 +284,7 @@ th {
     float: left;
     font-size: .8em;
     margin-left: 1.5em;
-
 }
-
-
 
 .new_div_hour_axis {
     width: 100%;
@@ -253,8 +303,6 @@ th {
     text-align: center;
     font-size: .7em;
 }
-
-
 
 .period_int_1 {
     background-color: #c13333;
@@ -414,60 +462,64 @@ th {
 
 .cloud_int_3_5 {
     background-color: #909596;
-    color: white;
+    color: white !important;
 
 }
 
 .cloud_int_4 {
     background-color: #777e7f;
-    color: white;
+    color: white !important;
 
 }
 
 .cloud_int_5 {
     background-color: #626b6d;
-    color: white;
+    color: white !important;
 
     /* 10 */
 }
 
 .cloud_int_6 {
     background-color: #5c6466;
-    color: white;
+    color: white !important;
 
 }
 
 .cloud_int_7 {
     background-color: #4e5556;
-    color: white;
+    color: white !important;
 
 }
 
 .cloud_int_8 {
     background-color: #454b4c;
-    color: white;
+    color: white !important;
 
 }
 
 .cloud_int_9 {
     background-color: #3b4142;
-    color: white;
+    color: white !important;
 
 
 }
 
 .cloud_int_10 {
     background-color: #333a3a;
-    color: white;
+    color: white !important;
 
     /* 15 */
 }
 
 .cloud_int_10_plus {
     background-color: #2d3435;
-    color: white;
+    color: white !important;
 
 }
+
+
+
+
 
 .disabled_cell {
     background-color: #1e1e1e;
