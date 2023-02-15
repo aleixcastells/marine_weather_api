@@ -24,55 +24,14 @@ console.log(NOW)
 createLocationObjects()
 console.log(LOCATION_ARRAY)
 
+
+
+
 apiFetch()
-
-
-
-function urlSequence(i) {
-
-
-    let result = 0
-
-    let rows = Math.floor(LOCATION_AMOUNT / 3)
-    let current_row = Math.floor(i / 3)
-    let cols = 3
-
-    // if ((i / cols) * 3)
-
-    console.log(current_row * 3 + (i))
-    console.log('floor', Math.floor(i / 3))
-
-
-
-
-
-    //  0.1.2 3.4.5 6.7.8 9.10.11 12.13.14
-
-    // 0
-    // 3
-    // 6
-    // 9
-    // 12
-
-    // 1
-    // 4
-    // 7
-    // 10
-    // 13
-
-    // 2
-    // 5
-    // 8
-    // 11
-    // 14
-
-}
-
 
 async function apiFetch() {
     for (let i = 0; i < LOCATION_AMOUNT; i++) {
 
-        urlSequence(i)
 
         let api_land_url =
             API_URL[0][0] +
@@ -87,7 +46,6 @@ async function apiFetch() {
             API_URL[1][1] +
             LOCATIONS[i][3] +
             API_URL[1][2]
-
 
 
         const RESPONSE_LAND = await fetch(api_land_url)
@@ -155,7 +113,16 @@ function addTables() {
         if (LOCATION_AMOUNT <= 0) { return }
         if (LOCATION_AMOUNT <= 3) { main_container = document.getElementById(table_containters_array[table_select]) }
         if (LOCATION_AMOUNT > 3) {
-            if (table_select == 3) { table_select = 0 }
+
+            if (
+                i == Math.ceil(LOCATION_AMOUNT / 3) ||
+                i == (Math.ceil(LOCATION_AMOUNT / 3) * 2) ||
+                i == (Math.ceil(LOCATION_AMOUNT / 3) * 3) ||
+                i == (Math.ceil(LOCATION_AMOUNT / 3) * 4)
+            ) {
+                table_select++
+                console.log(i)
+            }
 
             main_container = document.getElementById(table_containters_array[table_select])
         }
@@ -278,7 +245,6 @@ function addTables() {
             uviColor(i)
             new_div_uvi_text.setAttribute('class', 'new_div_uvi_text')
         }
-        table_select++
     }
 }
 

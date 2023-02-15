@@ -13,13 +13,12 @@ export const LOCATIONS = [
     ['Sa Calobra', 'Escorca', '39.85', '2.79'],
     ['Cala Agulla', 'Capdepera', '39.72', '3.46'],
     ['Cala Pi', 'Llucmajor', '39.359', '2.833'],
-    // ['Hazar', 'Turkmenistan', '39.56', '53.023'],
-    // ['Bissau', 'Guinea Bissau', '11.63', '-16.089'],
-    // ['Heimaey', 'Iceland', '63.37', '-20.31'],
-    // ['Kaohsiung', 'Taiwan', '22.444', '120.351'],
-
-    // ['Adak', 'Alaska', '51.615', '-176.613'],
-    // ['P. Saler', 'València', '39.415', '-0.312'],
+    ['Hazar', 'Turkmenistan', '39.56', '53.023'],
+    ['Bissau', 'Guinea Bissau', '11.63', '-16.089'],
+    ['Heimaey', 'Iceland', '63.37', '-20.31'],
+    ['Kaohsiung', 'Taiwan', '22.444', '120.351'],
+    ['Adak', 'Alaska', '51.615', '-176.613'],
+    ['P. Saler', 'València', '39.415', '-0.312'],
 ]
 
 /*
