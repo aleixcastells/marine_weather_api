@@ -1,7 +1,6 @@
 body {
     background-color: #ffffff !important;
     color: rgb(32, 32, 32) !important;
-
 }
 
 .main_table_container {
@@ -46,7 +45,6 @@ table {
     margin: 0 !important;
     color: rgb(32, 32, 32) !important;
     border-bottom: 1px solid rgb(206, 206, 206) !important;
-
 }
 
 .table_div {
@@ -62,7 +60,6 @@ table {
     -moz-transition: all .07s ease-in-out;
     -o-transition: all .07s ease-in-out;
     transition: all .07s ease-in-out;
-
 }
 
 .div_colortable_title {
@@ -80,7 +77,6 @@ table {
     padding: .5em;
     height: 450px;
     opacity: 1;
-
 }
 
 .inner_div_wrap {
@@ -104,7 +100,6 @@ table {
 .hidden {
     opacity: 0;
 }
-
 
 .cell_highlight {
     font-weight: bolder !important;
@@ -178,8 +173,8 @@ th {
     background-color: transparent !important;
     background-size: 2.3em;
     background-repeat: no-repeat;
-    background-position: .9em .85em;
-    width: 3.2em;
+    background-position: .9em .7em;
+    width: 3.1em;
 }
 
 .header_location {
@@ -251,13 +246,10 @@ th {
 
 }
 
-
-
 .new_div_uvi {
     margin-top: .8em;
     height: 2.6em;
 }
-
 
 .new_div_uvi_number {
     font-size: 1em;
@@ -285,7 +277,6 @@ th {
     margin-bottom: .7em;
     font-family: 'Menlo', monospace;
     font-size: .6em;
-
 }
 
 .new_div_hour_axis_cells {

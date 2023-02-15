@@ -17,7 +17,6 @@ export function uviText(index) {
         'Seek shade during midday hours! Slip on a shirt, sunscreen and hat!',
         'Avoid out the sun during midday! Shade, shirt, sunscreen and hat are a must!'
     ]
-    if (index < 4) { return UVI_TEXT[0] }
-    if (index < 8) { return UVI_TEXT[1] }
-    if (index >= 4) { return UVI_TEXT[2] }
+    return index < 4 ? UVI_TEXT[0] : index >= 8 ? UVI_TEXT[2] : UVI_TEXT[1]
+
 }

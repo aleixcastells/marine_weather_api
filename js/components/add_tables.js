@@ -1,4 +1,4 @@
-import { LOCATION_ARRAY, LOCATION_AMOUNT, LOCATION_HEADERS, NOW, LOCATION_INFO_TABLES } from '../main.js'
+import { LOCATION_ARRAY, LOCATION_AMOUNT, LOCATION_HEADERS, NOW, LOCATION_INFO_TABLES, open_tables } from '../main.js'
 import { flagColor } from './flag_color.js'
 import { LOCATIONS } from './locations.js'
 import { selectData } from './select_data.js'
@@ -15,11 +15,10 @@ export function addTables() {
     let table_colors = ['waves', 'period', 'disable', 'cloudcover', 'temperature']
     let table_select = 0
     let main_container;
+    let expand_array = ['expand all', 'close all']
 
     let expand_button = document.getElementById('expand_button')
     expand_button.addEventListener('click', () => {
-
-        let expand_array = ['expand all', 'close all']
 
         if (expand_button.textContent == expand_array[0]) {
             expand_button.textContent = expand_array[1]
@@ -35,10 +34,12 @@ export function addTables() {
         if (LOCATION_AMOUNT <= 0) { return }
         if (LOCATION_AMOUNT <= 3) { main_container = document.getElementById(table_containters_array[table_select]) }
         if (LOCATION_AMOUNT > 3) {
-
-            if (i % Math.ceil(LOCATION_AMOUNT / 3) == 0 && i % Math.ceil(LOCATION_AMOUNT / 3) != 0) { table_select++ }
-            main_container = document.getElementById(table_containters_array[table_select])
+            if (i % Math.ceil(LOCATION_AMOUNT / 3) == 0 && i % Math.ceil(LOCATION_AMOUNT / 3) != 0) {
+                table_select++
+            }
         }
+
+        main_container = document.getElementById(table_containters_array[Math.floor(i / (LOCATION_AMOUNT / 3))])
 
         let new_div = document.createElement('div')
         let new_table = document.createElement('table')
@@ -54,17 +55,26 @@ export function addTables() {
         main_container.append(new_div)
         new_div.setAttribute('class', 'table_div table_div_open')
         new_div.setAttribute('id', `table_div_${(i + 1)}`)
-
         new_div.addEventListener('click', (event) => {
+
             if (document.getElementById(event.currentTarget.id).classList.contains('table_div_open')) {
                 document.getElementById(event.currentTarget.id).classList.replace('table_div_open', 'table_div_collapsed')
                 document.getElementById('inner_div_' + event.currentTarget.id.match(/\d{1,}$/g)).classList.replace('visible', 'hidden')
                 document.getElementById('inner_div_wrap_' + event.currentTarget.id.match(/\d{1,}$/g)).classList.replace('inner_open', 'inner_closed')
+                open_tables[0]--
             }
             else {
                 document.getElementById(event.currentTarget.id).classList.replace('table_div_collapsed', 'table_div_open')
                 document.getElementById('inner_div_' + event.currentTarget.id.match(/\d{1,}$/g)).classList.replace('hidden', 'visible')
                 document.getElementById('inner_div_wrap_' + event.currentTarget.id.match(/\d{1,}$/g)).classList.replace('inner_closed', 'inner_open')
+                open_tables[0]++
+            }
+
+            if (open_tables[0] == LOCATION_AMOUNT) {
+                expand_button.textContent = expand_array[1]
+            }
+            if (open_tables[0] == 0) {
+                expand_button.textContent = expand_array[0]
             }
         })
 

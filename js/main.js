@@ -19,6 +19,7 @@ export const LOCATION_ARRAY = []
 export const LOCATION_AMOUNT = LOCATIONS.length
 export const LOCATION_HEADERS = 4
 export const LOCATION_INFO_TABLES = 5
+export let open_tables = []
 
 console.log(NOW)
 console.log(LOCATION_ARRAY)
@@ -47,16 +48,12 @@ async function apiFetch() {
         LOCATION_ARRAY[i].wave_height = API_DATA_MARINE.hourly.wave_height
         LOCATION_ARRAY[i].wave_period = API_DATA_MARINE.hourly.wave_period
         LOCATION_ARRAY[i].wave_direction = API_DATA_MARINE.hourly.wave_direction
-
         LOCATION_ARRAY[i].cloud_cover = API_DATA_LAND.hourly.cloudcover
         LOCATION_ARRAY[i].temperature = API_DATA_LAND.hourly.temperature_2m
         LOCATION_ARRAY[i].wind_speed = API_DATA_LAND.hourly.windspeed_10m
         LOCATION_ARRAY[i].weathercode = API_DATA_LAND.hourly.weathercode
         LOCATION_ARRAY[i].precipitation = API_DATA_LAND.hourly.precipitation
         LOCATION_ARRAY[i].uvi = API_DATA_LAND.daily.uv_index_clear_sky_max[2]
-
-        console.log('Land', API_DATA_LAND)
-        console.log('Marine', API_DATA_MARINE)
     }
     document.getElementById('loader').classList.add('hidden')
     document.getElementById('header_fixed').classList.remove('hidden')
@@ -67,5 +64,9 @@ async function apiFetch() {
 }
 
 
+// Interact with module console
+// import('./js/main.js').then(m => module = m)
 
-
+export function test() {
+    console.log('test success!')
+}
