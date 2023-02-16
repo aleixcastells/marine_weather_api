@@ -140,7 +140,7 @@ export function addTables() {
                     if (y != 2) { new_div_colortable_cell.setAttribute('class', `colortable_cell ${cellColor(new_div_colortable_cell.textContent, table_colors[y])}`) }
                     if (y == 2) { new_div_colortable_cell.setAttribute('class', `colortable_cell wind_cell`) }
                     if (y == 2) { new_div_colortable_cell.textContent = windCardinalDirection(new_div_colortable_cell.textContent) }
-                    if (k + (12 * j) == NOW - 1) {
+                    if (k + (12 * j) == NOW) {
                         new_div_colortable_cell.classList.add('cell_highlight')
                     }
                 }
