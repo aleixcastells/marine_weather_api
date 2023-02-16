@@ -1,7 +1,6 @@
 import { LOCATION_ARRAY, NOW } from '../main.js'
 
 export function flagColor(location_number) {
-    let next_hour = 48 + NOW
     let rain_clear = false
     let clouds_clear = false
     let warning_clear = false
@@ -37,7 +36,6 @@ function checkWeather(weather, max = 1000, min = 0, before = 0, after = 2, locat
     for (let k = 0; k < check_array.length; k++) {
         let weather_check = LOCATION_ARRAY[location_number][weather][48 + NOW + check_array[k]]
         if (weather_check > max || weather_check < min) { isGood = false }
-        if (weather_check < max && weather_check > min) { isGood = true }
     }
     return isGood
 }

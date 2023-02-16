@@ -12,11 +12,19 @@ export function uviColor(location_number) {
 
 export function uviText(index) {
 
-    const UVI_TEXT = [
-        'You can safely enjoy being outside!',
-        'Seek shade during midday hours! Slip on a shirt, sunscreen and hat!',
-        'Avoid out the sun during midday! Shade, shirt, sunscreen and hat are a must!'
-    ]
-    return index < 4 ? UVI_TEXT[0] : index >= 8 ? UVI_TEXT[2] : UVI_TEXT[1]
+    let rating = ''
 
+    if (index < 3) { rating = 'Low' }
+    if (index >= 3) { rating = 'Moderate' }
+    if (index >= 5) { rating = 'High' }
+    if (index >= 8) { rating = 'Very High' }
+    if (index >= 10) { rating = 'Extreme' }
+
+    const UVI_TEXT = [
+        `<strong>${rating}</strong>: You can safely enjoy being outside!`,
+        `<strong>${rating}</strong>: Seek shade during midday hours! Wear a shirt, hat and sunscreen!`,
+        `<strong>${rating}</strong>: Avoid the sun! Shade, shirt, sunscreen and UV glasses!`,
+    ]
+
+    return index < 4 ? UVI_TEXT[0] : index >= 6 ? UVI_TEXT[2] : UVI_TEXT[1]
 }

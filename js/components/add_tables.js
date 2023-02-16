@@ -9,13 +9,13 @@ import { closeTables } from './close_tables.js'
 
 export function addTables() {
 
-    let table_containters_array = ['table_container_1', 'table_container_2', 'table_container_3']
-    let header_classes_array = ['header_flag', 'header_location', 'header_wind', 'header_temperature', 'header_town']
-    let table_titles = ['WAVE HEIGHT (m)', 'WAVE PERIOD (s)', 'WAVE DIRECTION', 'CLOUD COVER (%)', 'AIR TEMPERATURE (°C)']
-    let table_colors = ['waves', 'period', 'disable', 'cloudcover', 'temperature']
+    let table_containters_array = ['table_container_1', 'table_container_2', 'table_container_3',]
+    let header_classes_array = ['header_flag', 'header_location', 'header_wind', 'header_temperature', 'header_town',]
+    let table_titles = ['WAVE HEIGHT (m)', 'WAVE PERIOD (s)', 'WAVE DIRECTION', 'CLOUD COVER (%)', 'AIR TEMPERATURE (°C)',]
+    let table_colors = ['waves', 'period', 'disable', 'cloudcover', 'temperature',]
     let table_select = 0
     let main_container;
-    let expand_array = ['expand all', 'close all']
+    let expand_array = ['expand all', 'close all',]
 
     let expand_button = document.getElementById('expand_button')
     expand_button.addEventListener('click', () => {
@@ -91,7 +91,7 @@ export function addTables() {
 
             if (h == 0) { new_th.setAttribute('class', `${flagColor(i)} header_flag`) }
             if (h == 1) { new_th.innerHTML = `<div class="${header_classes_array[4]}">${LOCATIONS[i][1]}</div><div>${LOCATIONS[i][0]}</div>` }
-            if (h == 2) { new_th.textContent = `↖ ${Math.round(LOCATION_ARRAY[i].wind_speed[48 + NOW])} kmh` }
+            if (h == 2) { new_th.textContent = `${windCardinalDirection(LOCATION_ARRAY[i].winddirection[48 + NOW])} ${Math.round(LOCATION_ARRAY[i].wind_speed[48 + NOW])} kmh` }
             if (h == 3) { new_th.textContent = `${(LOCATION_ARRAY[i].temperature[48 + NOW]).toFixed(0)} ºC` }
         }
 
@@ -140,9 +140,15 @@ export function addTables() {
                     if (y != 2) { new_div_colortable_cell.setAttribute('class', `colortable_cell ${cellColor(new_div_colortable_cell.textContent, table_colors[y])}`) }
                     if (y == 2) { new_div_colortable_cell.setAttribute('class', `colortable_cell wind_cell`) }
                     if (y == 2) { new_div_colortable_cell.textContent = windCardinalDirection(new_div_colortable_cell.textContent) }
-                    if (k + (12 * j) == NOW) {
+
+                    if (NOW == 0 && k == 12 - 1 && j == 1) {
                         new_div_colortable_cell.classList.add('cell_highlight')
                     }
+
+                    if (NOW > 0 && NOW <= 23 && NOW - 1 == (k + (12 * j))) {
+                        new_div_colortable_cell.classList.add('cell_highlight')
+                    }
+
                 }
             }
         }
@@ -155,7 +161,7 @@ export function addTables() {
             new_div_uvi_number.setAttribute('class', 'new_div_uvi_number')
             new_div_uvi_number.setAttribute('id', 'uvi_number' + (i + 1))
             new_div_uvi.append(new_div_uvi_text)
-            new_div_uvi_text.textContent = uviText(LOCATION_ARRAY[i].uvi)
+            new_div_uvi_text.innerHTML = uviText(LOCATION_ARRAY[i].uvi)
             uviColor(i)
             new_div_uvi_text.setAttribute('class', 'new_div_uvi_text')
         }

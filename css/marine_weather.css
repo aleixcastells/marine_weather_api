@@ -131,7 +131,10 @@ table {
 }
 
 .wind_cell {
-    background-color: rgb(208, 208, 208);
+    background-color: rgb(224, 224, 224);
+    font-size: 1em !important;
+    padding-top: 0 !important;
+    line-height: 1.1em !important;
 }
 
 .loader {
